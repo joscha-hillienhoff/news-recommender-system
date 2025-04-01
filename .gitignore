@@ -28,3 +28,7 @@ Temporary Items
 
 # Ignore data folder
 data/
+
+# Ignore input and output folder
+input/
+output/
