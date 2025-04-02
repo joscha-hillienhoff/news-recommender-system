@@ -25,10 +25,11 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-
+.read_mind
 # Ignore data folder
 data/
 
 # Ignore input and output folder
 input/
 output/
+read_mind/
