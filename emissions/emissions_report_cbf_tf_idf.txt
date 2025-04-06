@@ -1,0 +1,11 @@
+📄 Emissions Report – 2025-04-04 11:19:36
+====================================
+🌱 Total Emissions:     0.000295 kg CO2eq
+
+🕒 Duration:            1.22 hours
+⚡ Energy Consumed:     0.0098 kWh
+🧠 CPU Power:           5.00 W
+🎮 GPU Power:           0.00 W
+
+🌍 Country:             Norway
+====================================
