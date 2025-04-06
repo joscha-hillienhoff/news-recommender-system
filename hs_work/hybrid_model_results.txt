@@ -1,0 +1,37 @@
+C:\Users\hryad\Desktop\iitm\Even Sem'25\Recommender Systems\Project\TDT4215-Group-Project\hs_work>python magic_models_eval.py
+Results for DT_Prediction:
+AUC:    0.7901
+MRR:    0.4237
+nDCG@5: 0.4723
+nDCG@10:0.5297
+--------------------------------------------------
+Results for RF_Prediction:
+AUC:    0.7858
+MRR:    0.4204
+nDCG@5: 0.4692
+nDCG@10:0.5268
+--------------------------------------------------
+Results for LR_Prediction:
+AUC:    0.6505
+MRR:    0.3153
+nDCG@5: 0.3452
+nDCG@10:0.4052
+--------------------------------------------------
+Results for KNN_Prediction:
+AUC:    0.7020
+MRR:    0.3578
+nDCG@5: 0.3932
+nDCG@10:0.4509
+--------------------------------------------------
+Results for LGB_Prediction:
+AUC:    0.6695
+MRR:    0.3314
+nDCG@5: 0.3638
+nDCG@10:0.4230
+--------------------------------------------------
+Results for NN_Prediction:
+AUC:    0.6626
+MRR:    0.3265
+nDCG@5: 0.3582
+nDCG@10:0.4168
+--------------------------------------------------
