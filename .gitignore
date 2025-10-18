@@ -27,7 +27,14 @@ Temporary Items
 .apdisk
 .read_mind
 # Ignore data folder
-data/
+data/raw/
+data/processed/
+data/final/
+
+# allow DVC metadata files to be tracked
+!data/raw.dvc
+!data/processed.dvc
+!data/final.dvc
 
 # Ignore input and output folder
 read_mind/
