@@ -1,5 +1,5 @@
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 train_data = pd.read_csv("MINDsmall_train/behaviors.tsv", sep="\t", header=None)
 val_data = pd.read_csv("MINDsmall_train/valiation_behaviors.tsv", sep="\t", header=None)
@@ -13,19 +13,38 @@ new_users = val_users - train_users
 
 model_df = pd.read_csv("model_best.csv")
 
-hybrid_data = pd.DataFrame(columns=["idx", "time_imp", "imp_count", "hist_count", "imp_type", "hist_type", "user_in_train", "perc_itm_in_train"])
+hybrid_data = pd.DataFrame(
+    columns=[
+        "idx",
+        "time_imp",
+        "imp_count",
+        "hist_count",
+        "imp_type",
+        "hist_type",
+        "user_in_train",
+        "perc_itm_in_train",
+    ]
+)
 hybrid_data["idx"] = model_df.iloc[:, 0]
 hybrid_data["time_imp"] = val_data.iloc[:, 2].values
-hybrid_data['time_imp'] = pd.to_datetime(hybrid_data['time_imp'], errors='coerce')
-hybrid_data['time_imp'] = hybrid_data['time_imp'].dt.hour + (hybrid_data['time_imp'].dt.minute >= 30).astype(int)
-hybrid_data['time_imp'] = hybrid_data['time_imp'] % 24
+hybrid_data["time_imp"] = pd.to_datetime(hybrid_data["time_imp"], errors="coerce")
+hybrid_data["time_imp"] = hybrid_data["time_imp"].dt.hour + (
+    hybrid_data["time_imp"].dt.minute >= 30
+).astype(int)
+hybrid_data["time_imp"] = hybrid_data["time_imp"] % 24
 
-hybrid_data["imp_count"] = val_data.iloc[:, 4].apply(lambda x: len(str(x).split()) if pd.notna(x) else 0)
-hybrid_data["hist_count"] = val_data.iloc[:, 3].apply(lambda x: len(str(x).split()) if pd.notna(x) else 0)
+hybrid_data["imp_count"] = val_data.iloc[:, 4].apply(
+    lambda x: len(str(x).split()) if pd.notna(x) else 0
+)
+hybrid_data["hist_count"] = val_data.iloc[:, 3].apply(
+    lambda x: len(str(x).split()) if pd.notna(x) else 0
+)
 hybrid_data["user_in_train"] = val_data.iloc[:, 1].apply(lambda x: 1 if x in train_users else 0)
 
 history_lists = train_data.iloc[:, 3].dropna().apply(lambda x: str(x).split())
-impression_lists = train_data.iloc[:, 4].dropna().apply(lambda x: [imp.split('-')[0] for imp in str(x).split()])
+impression_lists = (
+    train_data.iloc[:, 4].dropna().apply(lambda x: [imp.split("-")[0] for imp in str(x).split()])
+)
 # Flatten and combine both lists
 all_news_ids = set()
 for lst in history_lists:
@@ -36,7 +55,9 @@ for lst in impression_lists:
 train_itms = list(all_news_ids)
 
 history_lists = val_data.iloc[:, 3].dropna().apply(lambda x: str(x).split())
-impression_lists = val_data.iloc[:, 4].dropna().apply(lambda x: [imp.split('-')[0] for imp in str(x).split()])
+impression_lists = (
+    val_data.iloc[:, 4].dropna().apply(lambda x: [imp.split("-")[0] for imp in str(x).split()])
+)
 # Flatten and combine both lists
 all_news_ids = set()
 for lst in history_lists:
@@ -49,7 +70,7 @@ val_items = list(all_news_ids)
 train_itms_set = set(train_itms)
 
 # Calculate percentage for each row
-percentages = []
+percentages = list[float] = []
 for imp_list in impression_lists:
     if not imp_list:  # avoid division by zero
         percentages.append(0)
