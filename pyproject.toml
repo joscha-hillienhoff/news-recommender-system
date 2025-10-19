@@ -1,0 +1,17 @@
+[project]
+name = "news-recommender-system"
+version = "0.1.0"
+description = "Hybrid news recommender system using content-based and collaborative filtering on the MIND dataset"
+authors = [
+    {name = "hillienh",email = "hillienh@mail.uni-paderborn.de"}
+]
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "pandas (>=2.3.3,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
