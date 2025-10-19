@@ -19,3 +19,27 @@ dependencies = [
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.3.0"
+black = "^25.9.0"
+flake8 = "^7.3.0"
+isort = "^7.0.0"
+mypy = "^1.18.2"
+nbstripout = "^0.8.1"
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+line_length = 100
+
+[tool.flake8]
+max-line-length = 100
+extend-ignore = ["E203", "W503"]  # avoids conflicts with black
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+strict_optional = true
