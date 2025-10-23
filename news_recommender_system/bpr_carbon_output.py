@@ -1,12 +1,12 @@
+from datetime import datetime
 import gc
 import json
 import os
-from datetime import datetime
 
+from codecarbon import EmissionsTracker  # For carbon emissions tracking
 import cornac
 import numpy as np
 import pandas as pd
-from codecarbon import EmissionsTracker  # For carbon emissions tracking
 from recommenders.evaluation.python_evaluation import (
     map_at_k,
     ndcg_at_k,

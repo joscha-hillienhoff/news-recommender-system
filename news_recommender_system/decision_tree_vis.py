@@ -1,11 +1,11 @@
-import os
 from datetime import datetime
+import os
 
+from codecarbon import EmissionsTracker
 import lightgbm as lgb
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from codecarbon import EmissionsTracker
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score, classification_report

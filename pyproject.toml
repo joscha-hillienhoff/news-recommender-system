@@ -1,45 +1,47 @@
-[project]
-name = "news-recommender-system"
-version = "0.1.0"
-description = "Hybrid news recommender system using content-based and collaborative filtering on the MIND dataset"
-authors = [
-    {name = "hillienh",email = "hillienh@mail.uni-paderborn.de"}
-]
-readme = "README.md"
-requires-python = ">=3.10,<3.13"
-dependencies = [
-    "pandas (>=2.3.3,<3.0.0)",
-    "scikit-learn (>=1.7.2,<2.0.0)",
-    "hydra-core (>=1.3.2,<2.0.0)",
-    "omegaconf (>=2.3.0,<3.0.0)",
-    "hydra-colorlog (>=1.2.0,<2.0.0)"
-]
-
-
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
-[tool.poetry.group.dev.dependencies]
-pre-commit = "^4.3.0"
-black = "^25.9.0"
-flake8 = "^7.3.0"
-isort = "^7.0.0"
-mypy = "^1.18.2"
-nbstripout = "^0.8.1"
+[project]
+name = "news_recommender_system"
+version = "0.0.1"
+description = "Developing and benchmarking content-based, collaborative, and hybrid models for personalized news recommendations."
+authors = [
+  { name = "Joscha" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License"
+]
+dependencies = [
+    "black",
+    "flake8",
+    "isort",
+    "loguru",
+    "mkdocs",
+    "pip",
+    "pytest",
+    "python-dotenv",
+    "tqdm",
+    "typer",
+]
+requires-python = "~=>=3.11.0"
 
 [tool.black]
-line-length = 100
+line-length = 99
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.venv
+)/
+'''
 
 [tool.isort]
 profile = "black"
-line_length = 100
+known_first_party = ["news_recommender_system"]
+force_sort_within_sections = true
 
-[tool.flake8]
-max-line-length = 100
-extend-ignore = ["E203", "W503"]  # avoids conflicts with black
 
-[tool.mypy]
-python_version = "3.11"
-ignore_missing_imports = true
-strict_optional = true
