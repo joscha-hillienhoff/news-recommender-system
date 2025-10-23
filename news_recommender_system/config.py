@@ -21,6 +21,15 @@ MODELS_DIR = PROJ_ROOT / "models"
 REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
 
+# Column names for the behaviors files
+COL_BEHAVIORS = ['ImpressionId', 'User', 'Time', 'History', 'Impressions']
+
+# Column names for the news files
+COL_NEWS = ['NewsId', 'Category', 'SubCat', 'Title', 'Abstract', 'url', 'TitleEnt', 'AbstractEnt']
+
+# Standard time format string
+TIME_FORMAT = "%m/%d/%Y %I:%M:%S %p"
+
 # If tqdm is installed, configure loguru with tqdm.write
 # https://github.com/Delgan/loguru/issues/135
 try:
