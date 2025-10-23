@@ -26,8 +26,15 @@ dependencies = [
     "python-dotenv",
     "tqdm",
     "typer",
+    "dotenv (>=0.9.9,<0.10.0)",
+    "pandas (>=2.3.3,<3.0.0)",
+    "pyarrow (>=21.0.0,<22.0.0)",
+    "fastparquet (>=2024.11.0,<2025.0.0)",
+    "codecarbon (>=3.0.7,<4.0.0)",
 ]
-requires-python = "~=>=3.11.0"
+requires-python = ">=3.10,<3.13"
+packages = [
+    { include = "news_recommender_system" }]
 
 [tool.black]
 line-length = 99
