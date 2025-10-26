@@ -12,7 +12,28 @@ import os
 from typing import Iterator, Tuple
 
 import numpy as np
+import pandas as pd
 from sklearn.metrics import roc_auc_score
+
+from news_recommender_system.config import INTERIM_DATA_DIR, PROJ_ROOT
+
+
+def generate_truth_file(data, output_file="truth.txt"):
+    """Generate truth.txt file with ground truth click labels."""
+    # Convert to the correct structure
+    data = data.set_index("ImpressionId")["Impressions"].apply(lambda x: x.split())
+
+    output_folder = PROJ_ROOT / "references" / "truth_files"
+
+    # Full output path inside output/metrics
+    output_path = output_folder / output_file
+
+    with open(output_path, "w", encoding="utf-8") as f:
+        for impression_id, news_list in data.items():
+            labels = [int(news.split("-")[1]) for news in news_list]
+            f.write(f"{impression_id} {json.dumps(labels)}\n")
+
+    print(f"✅ Truth file saved at: {output_path}")
 
 
 def dcg_score(y_true: np.ndarray, y_score: np.ndarray, k: int = 10) -> float:
@@ -142,11 +163,11 @@ def scoring(truth_f: Iterator[str], sub_f: Iterator[str]) -> tuple[float, float,
     )
 
 
-def evaluate_model(truth_path: str, submission_path: str, output_path: str) -> None:
+def evaluate_model(truth_path: str, prediction_path: str, output_path: str) -> None:
     """Evaluate a submission against truth and write metrics to `output_path`."""
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-    with open(truth_path, "r") as truth_file, open(submission_path, "r") as sub_file:
+    with open(truth_path, "r") as truth_file, open(prediction_path, "r") as sub_file:
         auc, mrr, ndcg5, ndcg10 = scoring(truth_file, sub_file)
 
     with open(output_path, "w") as out:
@@ -157,16 +178,7 @@ def evaluate_model(truth_path: str, submission_path: str, output_path: str) -> N
 
 
 if __name__ == "__main__":
-    # Minimal CLI-like behavior for local runs; reuse evaluate_model so logic is single-sourced.
-    INPUT_DIR = "input"
-    OUTPUT_DIR = "output"
-    SUBMIT_DIR = os.path.join(INPUT_DIR, "res")
-    TRUTH_DIR = os.path.join(INPUT_DIR, "ref")
 
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    behaviors_val = pd.read_parquet(INTERIM_DATA_DIR / "behaviors_val.parquet")
 
-    evaluate_model(
-        truth_path=os.path.join(TRUTH_DIR, "truth_val_sorted.txt"),
-        submission_path=os.path.join(SUBMIT_DIR, "bpr.txt"),
-        output_path=os.path.join(OUTPUT_DIR, "scores_val_bpr.txt"),
-    )
+    generate_truth_file(behaviors_val, output_file="truth_val.txt")
