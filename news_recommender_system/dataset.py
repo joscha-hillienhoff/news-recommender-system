@@ -15,7 +15,13 @@ import time
 
 import pandas as pd
 
-from config import COL_BEHAVIORS, COL_NEWS, TIME_FORMAT
+from news_recommender_system.config import (
+    COL_BEHAVIORS,
+    COL_NEWS,
+    DATA_DIR,
+    PROJ_ROOT,
+    TIME_FORMAT,
+)
 
 # --- Data Loading Helper ---
 
@@ -99,12 +105,6 @@ def make_interim_datasets(data_dir: Path):
 
 
 if __name__ == "__main__":
-    # The parent of the parent of this file is the project root
-    project_dir = Path(__file__).resolve().parents[1]
-    print(project_dir)
-
-    data_directory = project_dir / "data"
-
-    print(f"Starting data processing for project at: {project_dir.name}")
-    make_interim_datasets(data_directory)
+    print(f"Starting data processing for project at: {PROJ_ROOT.name}")
+    make_interim_datasets(DATA_DIR)
     print("Data processing complete. Interim files saved to data/interim.")

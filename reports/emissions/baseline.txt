@@ -1,0 +1,12 @@
+        📄 Emissions Report – 2025-10-26 16:59:18
+        ====================================
+        🌱 Total Emissions:     0.000009 kg CO2eq
+
+        🕒 Duration:            0.00 hours
+        ⚡ Energy Consumed:     0.0000 kWh
+        🧠 CPU Power:           5.00 W
+        🎮 GPU Power:           0.00 W
+
+        🌍 Country:             Germany
+        ====================================
+        
