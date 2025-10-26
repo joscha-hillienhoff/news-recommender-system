@@ -31,6 +31,7 @@ dependencies = [
     "pyarrow (>=21.0.0,<22.0.0)",
     "fastparquet (>=2024.11.0,<2025.0.0)",
     "codecarbon (>=3.0.7,<4.0.0)",
+    "scikit-learn (>=1.7.2,<2.0.0)",
 ]
 requires-python = ">=3.10,<3.13"
 packages = [
