@@ -7,14 +7,32 @@ time window (e.g., 24h, 48h, or 7 days).
 
 Usage
 -----
-from news_recommender_system.models.baseline_ctr import generate_ctr_baseline_predictions
+# 1) Programmatic (Python)
+from pathlib import Path
+from news_recommender_system.modeling import baseline_ctr
+from news_recommender_system.config import INTERIM_DATA_DIR
 
-generate_ctr_baseline_predictions(
-    behaviors_train_val=behaviors_train_val,
-    behaviors_val=behaviors_val,
-    time_window_seconds=7 * 24 * 60 * 60,
-    output_file="prediction_val_baseline_ctr_1w.txt"
+baseline_ctr.main(
+    train_val_path=INTERIM_DATA_DIR / "behaviors_train_val.parquet",
+    val_path=INTERIM_DATA_DIR / "behaviors_val.parquet",
+    output_file="prediction_val_baseline_ctr.txt",
+    time_window_hours=24,
 )
+
+# 2) Command line (Typer CLI)
+# Example: 24-hour rolling window
+python -m news_recommender_system.modeling.baseline_ctr \
+  --train-val-path data/interim/behaviors_train_val.parquet \
+  --val-path       data/interim/behaviors_val.parquet \
+  --output-file    prediction_val_baseline_ctr_24h.txt \
+  --time-window-hours 24
+
+# Example: 7-day (168-hour) rolling window
+python -m news_recommender_system.modeling.baseline_ctr \
+  --train-val-path data/interim/behaviors_train_val.parquet \
+  --val-path       data/interim/behaviors_val.parquet \
+  --output-file    prediction_val_baseline_ctr_1w.txt \
+  --time-window-hours 168
 """
 
 from collections import defaultdict, deque
