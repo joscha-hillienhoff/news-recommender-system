@@ -80,6 +80,7 @@ def make_interim_datasets(data_dir: Path):
     print("\n--- 2. Combining and Processing Data ---")
     behaviors_train_val = pd.concat([behaviors_train, behaviors_val], ignore_index=True)
     news_train_val = pd.concat([news_train, news_val], ignore_index=True)
+    behaviors_train = _process_behaviors_time(behaviors_train)
     behaviors_train_val = _process_behaviors_time(behaviors_train_val)
     behaviors_val = _process_behaviors_time(behaviors_val)
 
