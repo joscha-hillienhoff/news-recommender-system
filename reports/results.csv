@@ -1,0 +1,7 @@
+model,family,auc,mrr,ndcg5,ndcg10,co2_kg
+Popularity (24 h clicks),Baseline,0.6508,0.3120,0.3409,0.4029,0.000013
+CTR (24 h window),Baseline,0.6504,0.3117,0.3407,0.4026,0.000024
+TF-IDF content-based,Content-based,0.6113,0.2903,0.3134,0.3741,0.000295
+Sentence-transformer content-based,Content-based,0.6389,0.3105,0.3388,0.3977,0.000163
+BPR matrix factorization,Collaborative,0.5013,0.2187,0.2236,0.2862,0.000013
+Hybrid (random forest selector)*,Hybrid,0.7858,0.4204,0.4692,0.5268,0.000189
